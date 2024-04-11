@@ -1,0 +1,49 @@
+﻿
+@model LoginModel
+
+@section title {
+    <h3>Login page</h3>
+}
+
+<form method="post" asp-controller="UserAuthentication" asp-action="Login">
+
+    <div class="text-danger" asp-asp-validation-summary="All"></div>
+    <div class="row mb-3">
+        <div class="col-2">
+            <label asp-for="Username" class="col-form-label"></label>
+        </div>
+        <div class="col-6">
+            <input type="text" asp-for="Username" class="form-control" />
+        </div>
+        <div class="col">
+            <span class="text-danger" asp-validation-for="Username"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label asp-for="Password" class="col-form-label"></label>
+        </div>
+        <div class="col-6">
+            <input type="password" asp-for="Password" class="form-control" />
+        </div>
+        <div class="col">
+            <span class="text-danger" asp-validation-for="Password"></span>
+        </div>
+    </div>
+
+    @if (TempData["msg"] != null)
+    {
+        <div class="msg">
+            @TempData["msg"]
+        </div>
+    }
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <input type="submit" class="btn btn-primary" value="Login" />
+        </div>
+        <div class="col-6">
+        </div>
+    </div>
+</form>

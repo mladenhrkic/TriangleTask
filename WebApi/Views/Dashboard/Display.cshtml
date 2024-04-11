@@ -1,0 +1,89 @@
+﻿@model List<Triangle>
+
+@{
+    var username = User.Identity.Name;
+    WebApi.HelpFunctions.Container.TriContainTriangleData = null;
+}
+
+<p>
+    Welcome @username
+</p>
+
+@section title {
+    <h3>Triangles</h3>
+}
+
+@if (Model != null && Model.Count() > 0)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Stanica A</th>
+                <th>Stanica B</th>
+                <th>Stanica C</th>
+                <th>Kut Gamma</th>
+                <th>Kut Alpha</th>
+                <th>Kut Beta</th>
+                <th>Opseg</th>
+                <th>Povrsina</th>
+                <th>Vrsta po kutovima</th>
+                <th>Vrsta po duljini stranica</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var triangle in Model)
+            {
+                <tr>
+                    <td>@triangle.SideA</td>
+                    <td>@triangle.SideB</td>
+                    <td>@triangle.SideC</td>
+                    <td>@triangle.GammaAngle</td>
+                    <td>@triangle.AlphaAngle</td>
+                    <td>@triangle.BetaAngle</td>
+                    <td>@triangle.Perimeter</td>
+                    <td>@triangle.Area</td>
+                    <td>@triangle.TriangleByAngle</td>
+                    <td>@triangle.TriangleBySide</td>
+                    <td>
+                        <a class="btn btn-link"
+                           asp-controller="dashboard"
+                           asp-action="ExportToExcel"
+                           asp-route-categoryid="@triangle.TriangleId"
+                           asp-route-id="@triangle.TriangleId"
+                           onclick="return confirmExcel()">Excel</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-link"
+                           asp-controller="dashboard"
+                           asp-action="edit"                
+                           asp-route-id="@triangle.TriangleId">Edit</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-link"
+                           asp-controller="dashboard"
+                           asp-action="delete"
+                           asp-route-categoryid="@triangle.TriangleId"
+                           onclick="return confirmDelete()">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+<br />
+<a class="btn btn-primary" asp-controller="dashboard" asp-route-categoryid="1"
+   asp-route-id="1" asp-action="add">Add</a>
+@section Scripts {
+    <script>
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete this triangle?");
+        }
+
+        function confirmExcel() {
+            return confirm("Excel Trokut.xlsx created on desktop!");
+        }
+    </script>
+}

@@ -1,0 +1,152 @@
+﻿@model Triangle
+
+@{
+    string action = ViewBag.Action ?? string.Empty;
+
+}
+
+<form method="post" asp-controller="dashboard" asp-action="@action">
+    @if (action?.ToLower() == "edit")
+    {
+        <input type="hidden" asp-for="TriangleId" />
+    }
+
+    <div class="number-danger" asp-asp-validation-summary="false"></div>
+    <div class="row mb-3">
+        <div class="col-2">
+            <label asp-for="SideA" class="col-form-label">Stranica A</label>
+        </div>
+        <div class="col-6">
+            <input type="number" asp-for="SideA" class="form-control" />
+        </div>
+        <div class="col">
+            <span class="number-danger" asp-validation-for="SideA"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label asp-for="SideB" class="col-form-label">Stranica B</label>
+        </div>
+        <div class="col-6">
+            <input type="number" asp-for="SideB" class="form-control" />
+        </div>
+        <div class="col">
+            <span class="number-danger" asp-validation-for="SideB"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label asp-for="SideC" class="col-form-label">Stranica C</label>
+        </div>
+        <div class="col-6">
+            <input type="number" asp-for="SideC" class="form-control" />
+        </div>
+        <div class="col">
+            <span class="number-danger" asp-validation-for="SideC"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label asp-for="GammaAngle" class="col-form-label">Kut Gama</label>
+        </div>
+        <div class="col-6">
+            <input type="number" asp-for="GammaAngle" readonly class="form-control" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label asp-for="AlphaAngle" class="col-form-label">Kut Alfa</label>
+        </div>
+        <div class="col-6">
+            <input type="number" asp-for="AlphaAngle" readonly class="form-control" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label asp-for="BetaAngle" class="col-form-label">Kut Beta</label>
+        </div>
+        <div class="col-6">
+            <input type="number" asp-for="BetaAngle" readonly class="form-control" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label asp-for="Perimeter" class="col-form-label">Opseg</label>
+        </div>
+        <div class="col-6">
+            <input type="number" asp-for="Perimeter" readonly class="form-control" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label asp-for="Area" class="col-form-label">Povrsina</label>
+        </div>
+        <div class="col-6">
+            <input type="number" asp-for="Area" readonly class="form-control" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label asp-for="TriangleBySide" class="col-form-label">Po stranici</label>
+        </div>
+        <div class="col-6">
+            <input type="text" asp-for="TriangleBySide" readonly class="form-control" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label asp-for="TriangleByAngle" class="col-form-label">Po kutevima</label>
+        </div>
+        <div class="col-6">
+            <input type="text" asp-for="TriangleByAngle" readonly class="form-control" />
+        </div>
+    </div>
+    <input type="hidden" asp-for="Image" />
+    <input type="hidden" asp-for="Image_2" />
+    <br />
+    @try
+    {
+        if (!string.IsNullOrEmpty(Model?.Image))
+        {
+            <td>
+                <img src="@WebApi.HelpFunctions.ImageConvertor.Run(Model.Image)" style="width: 200px; height: 250px;" />
+            </td>
+
+            <td>
+                <img src="@WebApi.HelpFunctions.ImageConvertor.Run(Model.Image_2)" style="width: 200px; height: 250px;" />
+            </td>
+        }
+    }
+    catch
+    {
+        
+    }  
+    <br />
+    <br />
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <input type="submit" id="calculate" name="calculate" class="btn btn-primary" value="Calculate" />
+        </div>
+        <div class="col-6"></div>
+    </div>
+    
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <input type="submit" id="save" name="save" class="btn btn-primary" value="Save" />
+        </div>
+        <div class="col-6">
+        </div>
+    </div>
+</form>
+

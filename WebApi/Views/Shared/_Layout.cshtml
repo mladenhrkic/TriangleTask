@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auth Project</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="dashboard" asp-action="Display">Triangle Calculator</a>
+                <div class="navbar-collapse collapse d-md-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        @if (User.IsInRole("admin") || User.IsInRole("user"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="dashboard" asp-action="Display">Dashboard</a>
+                            </li>
+                        }
+                        @if (User.IsInRole("admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="userAuthentication" asp-action="Registration">Add new user</a>
+                            </li>
+                        }
+
+                        @if (User.IsInRole("admin") || User.IsInRole("user"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="userAuthentication" asp-action="Logout">Logout</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="pb-3">
+            @RenderSection("title")
+            <hr />
+        </div>
+        @RenderBody()
+    </div>
+    @await RenderSectionAsync("Scripts", required: false);
+</body>
+</html>
