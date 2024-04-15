@@ -1,6 +1,6 @@
 ﻿using Domain.Models;
 
-namespace WebApi.HelpFunctions
+namespace Presentation.HelpFunctions
 {
     public static class Container
     {

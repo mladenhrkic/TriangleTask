@@ -8,11 +8,9 @@ namespace Application.Categories.ServiceHandler
     public class TriangleCalculatorHandler(ITriangleCalculator triangleCalculator) :
         IRequestHandler<TriangleCalculator, Triangle>
     {
-        private readonly ITriangleCalculator _triangleCalculator = triangleCalculator;
-
         public async Task<Triangle> Handle(TriangleCalculator request, CancellationToken cancellationToken)
         {
-            return await _triangleCalculator.Result(request.Triangle);
+            return await triangleCalculator.Result(request.Triangle);
         }
     }
 }

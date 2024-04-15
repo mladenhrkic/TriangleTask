@@ -10,13 +10,13 @@ namespace ExcelServices
         public async Task Run(List<Triangle> triangle)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Trokut.xlsx";
+            var path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Trokut.xlsx";
             var file = new FileInfo(path);
 
             await SaveExcelFile(triangle, file);
         }
 
-        private static async Task SaveExcelFile(List<Triangle> triangle, FileInfo file)
+        private static async Task SaveExcelFile(IEnumerable<Triangle> triangle, FileInfo file)
         {
             DeleteExists(file);
 
@@ -36,7 +36,7 @@ namespace ExcelServices
             await package.SaveAsync();
         }
 
-        private static void DeleteExists(FileInfo file)
+        private static void DeleteExists(FileSystemInfo file)
         {
             if (file.Exists)
             {

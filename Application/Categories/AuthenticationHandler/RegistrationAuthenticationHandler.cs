@@ -8,8 +8,6 @@ namespace Application.Categories.AuthenticationHandler
     public class RegistrationAuthenticationHandler(IUserRegistrationService userRegistrationService) :
         IRequestHandler<RegistrationAuthentication, Status>
     {
-        private readonly IUserRegistrationService _userRegistrationService = userRegistrationService;
-
         public async Task<Status> Handle(RegistrationAuthentication request, CancellationToken cancellationToken)
         {
             var model = new RegistrationModel
@@ -22,7 +20,7 @@ namespace Application.Categories.AuthenticationHandler
                 Role = request.Role
             };
 
-            return await _userRegistrationService.RegistrationAsync(model);
+            return await userRegistrationService.RegistrationAsync(model);
         }
     }
 }

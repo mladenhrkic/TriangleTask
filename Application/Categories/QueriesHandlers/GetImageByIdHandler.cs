@@ -8,11 +8,9 @@ namespace Application.Categories.QueriesHandlers
     public class GetImageByIdHandler(IImageTableRepository imageTable) :
         IRequestHandler<GetImageById, ImageTable>
     {
-        private readonly IImageTableRepository _imageTable = imageTable;
-
         public async Task<ImageTable> Handle(GetImageById request, CancellationToken cancellationToken)
         {
-            return await _imageTable.GetImageById(request.ImageId);
+            return await imageTable.GetImageById(request.ImageId);
         }
     }
 }

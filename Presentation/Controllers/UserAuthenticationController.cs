@@ -4,7 +4,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebApi.Controllers
+namespace Presentation.Controllers
 {
     public class UserAuthenticationController : Controller
     {
@@ -53,12 +53,13 @@ namespace WebApi.Controllers
             return RedirectToAction(nameof(Login));
         }
 
-        public async Task<IActionResult> Registration()
+        public IActionResult Registration()
         {
             return View();
         }
 
         [Authorize(Roles = "admin")]
+        [HttpPost]
         public async Task<IActionResult> Registration(RegistrationModel model)
         {
             if (!ModelState.IsValid)

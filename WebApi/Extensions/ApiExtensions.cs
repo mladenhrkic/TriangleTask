@@ -18,6 +18,9 @@ namespace WebApi.Extensions
                 .AddTriangleServices()
                 .AddExcelService();
 
+            var presentationAssembly = typeof(Presentation.AssemblyReference).Assembly;
+            builder.Services.AddControllers().AddApplicationPart(presentationAssembly);
+
             builder.Services.AddTransient<GlobalExceptionHandlingMiddleware>();
             builder.Services.ConfigureApplicationCookie(op => op.LoginPath = "/UserAuthentication/Login");
             builder.Services.AddControllersWithViews();

@@ -8,8 +8,6 @@ namespace Application.Categories.AuthenticationHandler
     public class LoginAuthenticationHandler(IUserAuthenticationService userAuthenticationService) :
         IRequestHandler<LoginAuthentication, Status>
     {
-        private readonly IUserAuthenticationService _userAuthenticationService = userAuthenticationService;
-
         public async Task<Status> Handle(LoginAuthentication request, CancellationToken cancellationToken)
         {
             var model = new LoginModel
@@ -18,7 +16,7 @@ namespace Application.Categories.AuthenticationHandler
                 Password = request.Password
             };
 
-            return await _userAuthenticationService.LoginAsync(model);
+            return await userAuthenticationService.LoginAsync(model);
         }
     }
 }

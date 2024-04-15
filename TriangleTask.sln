@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TriangleServices", "Triangl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{F7327155-00E9-461A-8955-E2E780C7FB8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelServices", "ExcelServices\ExcelServices.csproj", "{D3E1C31F-7878-40F2-A8A2-B1F86F6F80D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExcelServices", "ExcelServices\ExcelServices.csproj", "{D3E1C31F-7878-40F2-A8A2-B1F86F6F80D9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation", "Presentation\Presentation.csproj", "{5D54BF84-517D-4DF8-B39A-F0C2500A45AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{D3E1C31F-7878-40F2-A8A2-B1F86F6F80D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3E1C31F-7878-40F2-A8A2-B1F86F6F80D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3E1C31F-7878-40F2-A8A2-B1F86F6F80D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D54BF84-517D-4DF8-B39A-F0C2500A45AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D54BF84-517D-4DF8-B39A-F0C2500A45AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D54BF84-517D-4DF8-B39A-F0C2500A45AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D54BF84-517D-4DF8-B39A-F0C2500A45AC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +67,7 @@ Global
 		{2C38B488-5047-4096-9088-CAFD28FA0884} = {F7327155-00E9-461A-8955-E2E780C7FB8C}
 		{F7327155-00E9-461A-8955-E2E780C7FB8C} = {36640683-7A2F-4A07-9DAE-3F9931A74C10}
 		{D3E1C31F-7878-40F2-A8A2-B1F86F6F80D9} = {F7327155-00E9-461A-8955-E2E780C7FB8C}
+		{5D54BF84-517D-4DF8-B39A-F0C2500A45AC} = {36640683-7A2F-4A07-9DAE-3F9931A74C10}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E548E855-EE7B-42B6-93B0-14C2F58F4E7A}

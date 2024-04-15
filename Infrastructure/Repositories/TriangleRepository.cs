@@ -16,7 +16,7 @@ namespace Infrastructure.Repositories
         public async Task<Triangle> CreateTriangle(Triangle triangle)
         {
             var categories = await GetAllTriangle();
-            int maxId = 0;
+            var maxId = 0;
             if (categories.Count > 0)
             {
                 maxId = categories.Max(x => x.TriangleId);
@@ -50,7 +50,7 @@ namespace Infrastructure.Repositories
         public async Task<Triangle> UpdateTriangle(Triangle updateTriangle)
         {
             var triangle = await _dbContext.Triangles.FirstOrDefaultAsync(c => c.TriangleId == updateTriangle.TriangleId);
-            //triangle = updateTriangle;
+
             triangle.SideA = updateTriangle.SideA;
             triangle.SideB = updateTriangle.SideB;
             triangle.SideC = updateTriangle.SideC;

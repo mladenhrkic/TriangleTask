@@ -118,11 +118,11 @@
         if (!string.IsNullOrEmpty(Model?.Image))
         {
             <td>
-                <img src="@WebApi.HelpFunctions.ImageConvertor.Run(Model.Image)" style="width: 200px; height: 250px;" />
+                <img src="@Presentation.HelpFunctions.ImageFormat.Run(Model.Image)" style="width: 200px; height: 250px;" />
             </td>
 
             <td>
-                <img src="@WebApi.HelpFunctions.ImageConvertor.Run(Model.Image_2)" style="width: 200px; height: 250px;" />
+                <img src="@Presentation.HelpFunctions.ImageFormat.Run(Model.Image_2)" style="width: 200px; height: 250px;" />
             </td>
         }
     }

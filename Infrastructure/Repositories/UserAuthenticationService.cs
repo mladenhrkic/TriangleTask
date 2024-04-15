@@ -32,28 +32,20 @@ namespace Infrastructure.Repositories
             }
 
             var singInResult = await _singInManager.PasswordSignInAsync(user, model.Password, false, true);
-            if (singInResult.Succeeded)
+            if (!singInResult.Succeeded)
             {
-                var userRoles = await _userManager.GetRolesAsync(user);
-                var authClaims = new List<Claim>
-                {
-                    new(ClaimTypes.Name, user.UserName)
-                };
-                foreach (var userRole in userRoles)
-                {
-                    authClaims.Add(new Claim(ClaimTypes.Role, userRole));
-                }
+                return AuthenticationStatus.Get(0, singInResult.IsLockedOut ? 
+                    "User locked out" : "Error on loggin in");
+            }
 
-                return AuthenticationStatus.Get(1, "Logged is successfully");
-            }
-            else if (singInResult.IsLockedOut)
+            var userRoles = await _userManager.GetRolesAsync(user);
+            var authClaims = new List<Claim>
             {
-                return AuthenticationStatus.Get(0, "User locked out");
-            }
-            else
-            {
-                return AuthenticationStatus.Get(0, "Error on loggin in");
-            }
+                new(ClaimTypes.Name, user.UserName)
+            };
+            authClaims.AddRange(userRoles.Select(userRole => new Claim(ClaimTypes.Role, userRole)));
+
+            return AuthenticationStatus.Get(1, "Logged is successfully");
         }
 
         public async Task LogoutAsync()

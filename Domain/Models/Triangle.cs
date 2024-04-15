@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Domain.Models
+﻿namespace Domain.Models
 {
     public class Triangle
     {
@@ -17,10 +11,10 @@ namespace Domain.Models
         public double BetaAngle { get; set; }
         public double Perimeter { get; set; }
         public double Area { get; set; }
-        public string UserId { get; set; }
-        public string TriangleBySide { get; set; }
-        public string TriangleByAngle { get; set; }
-        public string Image { get; set; }
-        public string Image_2 { get; set; }
+        public string? UserId { get; set; }
+        public string? TriangleBySide { get; set; }
+        public string? TriangleByAngle { get; set; }
+        public string? Image { get; set; }
+        public string? Image_2 { get; set; }
     }
 }
