@@ -21,6 +21,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExcelServices", "ExcelServi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation", "Presentation\Presentation.csproj", "{5D54BF84-517D-4DF8-B39A-F0C2500A45AC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{6FCCE48A-2B43-4641-8F31-B641B5D01D3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture.Tests", "Architecture.Tests\Architecture.Tests.csproj", "{701143E7-0956-425B-8D2B-54FFC0CC0CE8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +59,10 @@ Global
 		{5D54BF84-517D-4DF8-B39A-F0C2500A45AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D54BF84-517D-4DF8-B39A-F0C2500A45AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D54BF84-517D-4DF8-B39A-F0C2500A45AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{701143E7-0956-425B-8D2B-54FFC0CC0CE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{701143E7-0956-425B-8D2B-54FFC0CC0CE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{701143E7-0956-425B-8D2B-54FFC0CC0CE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{701143E7-0956-425B-8D2B-54FFC0CC0CE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +76,7 @@ Global
 		{F7327155-00E9-461A-8955-E2E780C7FB8C} = {36640683-7A2F-4A07-9DAE-3F9931A74C10}
 		{D3E1C31F-7878-40F2-A8A2-B1F86F6F80D9} = {F7327155-00E9-461A-8955-E2E780C7FB8C}
 		{5D54BF84-517D-4DF8-B39A-F0C2500A45AC} = {36640683-7A2F-4A07-9DAE-3F9931A74C10}
+		{701143E7-0956-425B-8D2B-54FFC0CC0CE8} = {6FCCE48A-2B43-4641-8F31-B641B5D01D3C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E548E855-EE7B-42B6-93B0-14C2F58F4E7A}
