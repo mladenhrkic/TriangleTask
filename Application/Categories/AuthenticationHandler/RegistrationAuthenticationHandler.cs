@@ -10,17 +10,8 @@ namespace Application.Categories.AuthenticationHandler
     {
         public async Task<Status> Handle(RegistrationAuthentication request, CancellationToken cancellationToken)
         {
-            var model = new RegistrationModel
-            {
-                Name = request.Name,
-                Email = request.Email,
-                Username = request.Username,
-                Password = request.Password,
-                PasswordConfirm = request.PasswordConfirm,
-                Role = request.Role
-            };
-
-            return await userRegistrationService.RegistrationAsync(model);
+            request.RegistrationModel ??= new RegistrationModel();
+            return await userRegistrationService.RegistrationAsync(request.RegistrationModel);
         }
     }
 }

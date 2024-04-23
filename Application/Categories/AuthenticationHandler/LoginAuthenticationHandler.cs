@@ -10,13 +10,8 @@ namespace Application.Categories.AuthenticationHandler
     {
         public async Task<Status> Handle(LoginAuthentication request, CancellationToken cancellationToken)
         {
-            var model = new LoginModel
-            {
-                Username = request.Username,
-                Password = request.Password
-            };
-
-            return await userAuthenticationService.LoginAsync(model);
+            request.LoginModel ??= new LoginModel();
+            return await userAuthenticationService.LoginAsync(request.LoginModel);
         }
     }
 }

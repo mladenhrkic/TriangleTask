@@ -28,22 +28,18 @@ namespace Presentation.Controllers
                 return View(model);
             }
 
-            var userCredentials = new LoginAuthentication
+            var result = await _mediator.Send(new LoginAuthentication
             {
-                Username = model.Username,
-                Password = model.Password
-            };
+                LoginModel = model
+            });
 
-            var result = await _mediator.Send(userCredentials);
             if (result.StatusCode == 1)
             {
                 return RedirectToAction("Display", "Dashboard");
             }
-            else
-            {
-                TempData["msg"] = result.Message;
-                return RedirectToAction(nameof(Login));
-            }
+
+            TempData["msg"] = result.Message;
+            return RedirectToAction(nameof(Login));
         }
 
         [Authorize]
@@ -67,17 +63,14 @@ namespace Presentation.Controllers
                 return View(model);
             }
 
-            var reg = new RegistrationAuthentication
+            var registration = new RegistrationAuthentication
             {
-                Name = model.Name,
-                Email = model.Email,
-                Username = model.Username,
-                Password = model.Password,
-                PasswordConfirm = model.PasswordConfirm,
-                Role = "user"
+                RegistrationModel = model
             };
+            registration.RegistrationModel.Role = "user";
 
-            var result = await _mediator.Send(reg);
+            var result = await _mediator.Send(registration);
+
             TempData["msg"] = result.Message;
             return RedirectToAction(nameof(Registration));
         }

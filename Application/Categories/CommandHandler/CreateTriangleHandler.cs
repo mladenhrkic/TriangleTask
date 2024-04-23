@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Application.Categories.CommandHandler
 {
-    internal class CreateTriangleHandler(ITriangleRepository repository) :
+    public class CreateTriangleHandler(ITriangleRepository repository) :
         IRequestHandler<CreateTriangle>
     {
         public async Task Handle(CreateTriangle request, CancellationToken cancellationToken)

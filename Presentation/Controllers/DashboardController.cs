@@ -24,14 +24,15 @@ namespace Presentation.Controllers
         {
             if (User.IsInRole("admin"))
             {
-                var getCommnd = new GetAllTriangle();
-                var triangles = await _mediator.Send(getCommnd);
+                var triangles = await _mediator.Send(new GetAllTriangle());
                 return View(triangles);
             }
             else
             {
-                var getCommnd = new GetTriangleByUserId() { UserId = User.Identity.Name };
-                var triangles = await _mediator.Send(getCommnd);
+                var triangles = await _mediator.Send(new GetTriangleByUserId()
+                {
+                    UserId = User.Identity.Name 
+                });
                 return View(triangles);
             }
         }
@@ -53,21 +54,22 @@ namespace Presentation.Controllers
             }
             if (form.Keys.Contains("calculate"))
             {
-                var test = new TriangleCalculator();
-                test.Triangle = triangle;
-
-                Container.TriContainTriangleData = await _mediator.Send(test);
+                Container.TriContainTriangleData = await _mediator.Send(new TriangleCalculator
+                {
+                    Triangle = triangle
+                });
                 return RedirectToAction("Add", "Dashboard");
             }
-            else
-            {
-                var newCategory = new CreateTriangle();
-                newCategory.Triangle = triangle;
-                newCategory.Triangle.UserId = User.Identity.Name;
 
-                await _mediator.Send(newCategory);
-                return RedirectToAction(nameof(Display));
-            }
+            var newCategory = new CreateTriangle
+            {
+                Triangle = triangle,
+            };
+            newCategory.Triangle.UserId = User.Identity.Name;
+
+            await _mediator.Send(newCategory);
+            return RedirectToAction(nameof(Display));
+            
         }
 
         [Authorize]
@@ -80,8 +82,10 @@ namespace Presentation.Controllers
                 return View(Container.TriContainTriangleData);
             }
 
-            var edit = new GetTriangleById { TriangleId = id };
-            var category = await _mediator.Send(edit);
+            var category = await _mediator.Send(new GetTriangleById
+            {
+                TriangleId = id 
+            });
             return View(category);
         }
 
@@ -95,22 +99,22 @@ namespace Presentation.Controllers
             }
             if (form.Keys.Contains("calculate"))
             {
-                var test = new TriangleCalculator();
-                test.Triangle = triangle;
+                var test = new TriangleCalculator
+                {
+                    Triangle = triangle
+                };
 
                 Container.TriContainTriangleData = await _mediator.Send(test);
                 return RedirectToAction(nameof(Edit));
             }
-            else
-            {
-                var edit = new UpdateTriangle();
-                triangle.UserId = User.Identity.Name;
-                edit.Triangle = triangle;
 
-                await _mediator.Send(edit);
+            var edit = new UpdateTriangle();
+            triangle.UserId = User.Identity.Name;
+            edit.Triangle = triangle;
 
-                return RedirectToAction(nameof(Display));
-            }
+            await _mediator.Send(edit);
+
+            return RedirectToAction(nameof(Display));
         }
 
         [Authorize]
@@ -131,8 +135,10 @@ namespace Presentation.Controllers
 
             ICollection<Triangle> triangleCollection = [collection];
 
-            var map = new ExportToExcel();
-            map.Triangles = triangleCollection;
+            var map = new ExportToExcel
+            {
+                Triangles = triangleCollection
+            };
             if (map.Triangles.Count > 0)
             {
                 await _mediator.Send(map);

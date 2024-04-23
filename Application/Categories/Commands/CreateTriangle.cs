@@ -5,6 +5,6 @@ namespace Application.Categories.Commands
 {
     public class CreateTriangle : IRequest
     {
-        public Triangle Triangle { get; set; }
+        public Triangle? Triangle { get; set; }
     }
 }
